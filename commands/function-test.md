@@ -18,3 +18,4 @@ Write ./t/function.t, a set of white-box subtests to test each function, includi
 - Explicitly test blocks that call die, croak, or confess, verifying the exact error strings using Test::Most.
 - Verify that internal helpers do not clobber global variables like $_ without localizing them first.
 - Test internal data states using Test::Memory::Cycle to ensure the garbage collector can clean up the function's internal variables.
+- Use 'prove -lt t/function.t', assume any failures are bugs in the code, and fix the code, if the code is right, fix the test.
