@@ -1,0 +1,13 @@
+Write function.t, a set of subtests to test each function white‑box, including internal helpers:
+- If function.t already exists, review it first.
+- If there is more than one .pm, do it .pm by .pm one at a time, as a standalone function.
+- Use Test::Mockingbird to mock all non-core functions being called, even those in this module.
+- Make sure you are testing what the code *should do*, not what it *actually does*.
+- Don't use the tests to document bad behaviour.
+- Use ~/src/njh/Test-Mockingbird for the interface to Test::Mockingbird.
+- Use ~/src/njh/Test-Returns to test return values of routines being tested.
+- Indent the code with tabs, not 4 spaces.
+- All code must be ASCII only.
+- Comment thoroughly (at least one, simple, easy-to-read comment every 5 lines).
+- Add diag calls when $ENV{TEST\_VERBOSE} is set do show what is going on.
+- Don't have magic numbers or magic strings.  Use a hash named %config, and Readonly where possible, to set values.
