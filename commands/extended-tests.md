@@ -1,0 +1,18 @@
+# Any other tests
+
+Now write t/extended\_tests.t, a set of tests designed specifically to hit untested execution paths, raising total coverage (minimum 95%) and targeting high LCSAJ/TER3 scores:
+- Examine all of the test cases in the t directory.
+- Think of any other tests that are needed to raise coverage and LCSAJ/TER3 scores, or that are simply good to do.
+- If you think of any, create, or append, all those tests to t/extended\_tests.t.
+- Try to ensure high total coverage (minimum 95%) and high LCSAJ scores.
+- Make sure you are testing what the code *should do*, not what it *actually does*.
+- Use ~/src/njh/Test-Returns to test return values of routines being tested.
+- Indent the code with tabs, not 4 spaces.
+- All code must be ASCII only, except for the Z calculus.
+- Comment thoroughly (at least one, simple, easy-to-read comment every 5 lines).
+- Add diag calls when $ENV{TEST\_VERBOSE} is set do show what is going on.
+- Don't have magic numbers or magic strings.  Use a hash named %config, and Readonly where possible, to set values.
+- Clearly comment on the purpose of each subtest
+- Explicitly test blocks that call die, croak, or confess, verifying the exact error strings using Test::Most.
+- Use 'prove -lt t/extended\_cases.t', assume any failures are bugs in the code, and fix the code; if the code is right, fix the test.
+- If you encounter a public subroutine that lacks a POD section, you must write the missing POD first. Infer the intended API, expected inputs, and return values from the subroutine's code. Then write the black-box tests based on that new documentation.  The POD documents purpose, the arguments it takes, what it returns, its side effects (if any), and other notes. It must include an example of usage.  Include in the POD a =head3 of API specification: schema compatible with Params::Validate::Strict and Return::Set for input (=head4) and output (=head4) respectively.  Include =head3 FORMAL SPECIFICATION, which is a formal specification using Z calculus.
