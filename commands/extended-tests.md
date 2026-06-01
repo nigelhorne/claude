@@ -1,6 +1,6 @@
 # Any other tests
 
-Now write t/extended\_tests.t, a set of tests designed specifically to hit untested execution paths, raising total coverage (minimum 90%) and targeting high LCSAJ/TER3 scores:
+Now write t/extended\_tests.t, a set of tests designed specifically to hit untested execution paths, raising total coverage (minimum 95%) and targeting high LCSAJ/TER3 scores:
 - Examine all of the test cases in the t directory.
 - Think of any other tests that are needed to raise coverage and LCSAJ/TER3 scores, or that are simply good to do.
 - If you think of any, create, or append, all those tests to t/extended\_tests.t.
