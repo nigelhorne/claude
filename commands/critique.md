@@ -13,6 +13,6 @@ Act as a ruthless but constructive senior Perl engineer. Look at the files in li
 - Return arrayrefs rather than arrays where possible.
 - Don't have magic numbers or magic strings.  Use a hash named %config that can be configured by Object::Configure if wanted, and Readonly where possible.
 - As well as strict and warnings, have this statement "use autodie qw(:all);"
-- When all of the return paths of a public method have no specfic return, make all of the paths return $self to allow chaining of methods.
+- When all of the return paths of a public method have no specfic return value (i.e. they say "return;"), make all of the paths return $self to allow chaining of methods.
 - Avoid goto.
 - Always write a single line for the changelog for each new feature or fix. Place the changelog line at the very top of its response, separate from the code block.
