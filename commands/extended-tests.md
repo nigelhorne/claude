@@ -16,4 +16,5 @@ Now write t/extended\_tests.t, a set of tests designed specifically to hit untes
 - Explicitly test blocks that call die, croak, or confess, verifying the exact error strings using Test::Most.
 - Use 'prove -lt t/extended\_cases.t', assume any failures are bugs in the code, and fix the code; if the code is right, fix the test.
 - If you encounter a public subroutine that lacks a POD section, you must write the missing POD first. Infer the intended API, expected inputs, and return values from the subroutine's code. Then write the black-box tests based on that new documentation.  The POD documents purpose, the arguments it takes, what it returns, its side effects (if any), and other notes. It must include an example of usage.  Include in the POD a =head3 of API specification: schema compatible with Params::Validate::Strict and Return::Set for input (=head4) and output (=head4) respectively.  Include =head3 FORMAL SPECIFICATION, which is a formal specification using Z calculus.
-- Identify any paths that cannot be executed and show them for me to review.
+- Identify and comment out any paths that cannot be executed and show them for me to review.
+- Add tests to function.t, unit.t, integration.t and edge\_cases.t to test the new code written while those files were created
