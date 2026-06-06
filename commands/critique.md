@@ -20,4 +20,17 @@ Act as a ruthless but constructive senior Perl engineer. Look at the files in li
 - Do not bump version numbers in the code, but it's OK to preannounce in the changelog by adding entries in there for what will be in the next release.
 - Make bug fixes, code improvements, and replace code that is the reimplementation of another CPAN module which can therefore be replaced by a call to that module.
 - For all new code or bug fixes, add a test case, and if the code is publically facing, update the POD.
-- Test the code with various locales, including English, French, German and Mandarin
+- Test the code with various locals and locales, including English, French, German and Mandarin. Test the code under two distinct dimensions of "locale":
+
+1. Geographic locale (GeoIP country detection)
+
+Write, or update, a test file t/locales.t that exercises country-based access-control rules using real country detection for the following language regions: English (GB and US), French (FR), German (DE), and Mandarin (CN).
+- Begin with a sanity subtest that verifies each relevant test resolves to the expected ISO country code. Use BAIL\_OUT if any mapping has changed, to make GeoIP database drift fail fast and obviously.
+- Cover: case-insensitive country codes and concurrent independent instances.
+
+2. System locale (POSIX LC\_ALL / LANG)
+
+For every test that exercises an error path — particularly paths that produce a die/croak message containing an OS error string (e.g. a missing config file, a failed open) — run the same test with local $ENV{LC\_ALL} set to at least en\_US.UTF-8 and de_\DE.UTF-8.
+
+- Do not use POSIX::strerror(ENOENT) to build the expected regex. Use local $! = ENOENT; my $msg = "$!" instead — this sources the string from Perl's own $! layer, which is what ends up in the thrown exception, and avoids divergence between the C library's locale and Perl's locale on mixed-locale systems.
+- Verify that error messages match (or are at least thrown) under both locales. A test that passes only on the developer's locale is not a passing test.
