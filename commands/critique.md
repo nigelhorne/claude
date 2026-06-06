@@ -20,3 +20,4 @@ Act as a ruthless but constructive senior Perl engineer. Look at the files in li
 - Do not bump version numbers in the code, but it's OK to preannounce in the changelog by adding entries in there for what will be in the next release.
 - Make bug fixes, code improvements, and replace code that is the reimplementation of another CPAN module which can therefore be replaced by a call to that module.
 - For all new code or bug fixes, add a test case, and if the code is publically facing, update the POD.
+- Test the code with various locales, including English, French, German and Mandarin
