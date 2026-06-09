@@ -6,6 +6,7 @@ Act as a ruthless but constructive senior Perl engineer. Look at the files in li
 - Comment thoroughly (at least one, simple, easy-to-read comment every 5 lines).
 - Each public routine (i.e. ones not starting with \_) must document in its POD its purpose, the arguments it takes, what it returns, its side effects (if any) and other notes. It must include an example of usage.  Include in the POD a =head3 of API specification: schema compatible with Params::Validate::Strict and Return::Set for input (=head4) and output (=head4) respectively.  Include a =head3 MESSAGES to contain a able of all error messages and warnings the method can produce, what they mean and what to do when they appear.
 - Include =head3 FORMAL SPECIFICATION, which is a formal specification using Z calculus.
+- Write pseudo code for all routines longer than 15 lines.  Put it in a POD =head3 PSEUDO CODE for public routines, and a comment before the routine for private routines.
 - I don't need PODs for helper and internal routines that start with \_; however, I do need comments before the routine, including purpose, entry criteria, exit status, side effects (if any) and notes (if any).
 - All code and PODs must be strictly ASCII only, except for the Z calculus in the =head3 FORMAL SPECIFICATION which may use appropriate Unicode mathematical symbols.
 - Use Params::Get and Params::Validate::Strict for public routines.
@@ -20,6 +21,7 @@ Act as a ruthless but constructive senior Perl engineer. Look at the files in li
 - Do not bump version numbers in the code, but it's OK to preannounce in the changelog by adding entries in there for what will be in the next release.
 - Make bug fixes, code improvements, and replace code that is the reimplementation of another CPAN module which can therefore be replaced by a call to that module.
 - For all new code or bug fixes, add a test case, and if the code is publically facing, update the POD.
+- All new code should be written using a top-down approach.
 - Point out spelling and grammitical mistakes in documentation, comments, POD and error messages.
 - Show unused variables and ineffecient code.
 - Add code to ensure the private methods are truly protected (i.e. only callable from the class or its subclasses) except for when they are called during white-box testing.  They should croak when an invalid call is made.
