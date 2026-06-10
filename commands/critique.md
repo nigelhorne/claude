@@ -2,7 +2,7 @@ Critique this code - think of new comments, improvements, Z notation specificati
 Act as a ruthless but constructive senior Perl engineer. Look at the files in lib/, t/ and bin/. Your task is to critique the code, improve its architecture, add formal specifications, and output a complete, refactored version of the file.
 
 - Make it clear where you're making the changes
-- Critique the design, find weaknesses, argue against the current approach
+- Critique the design, find weaknesses, argue against the current approach, document them in the =head1 LIMITATIONS section of the POD
 - Use croak and carp instead of warn and die for packages (not CLIs).
 - Comment thoroughly (at least one, simple, easy-to-read comment every 5 lines).
 - Each public routine (i.e. ones not starting with \_) must document in its POD its purpose, the arguments it takes, what it returns, its side effects (if any) and other notes. It must include an example of usage.  Include in the POD a =head3 of API specification: schema compatible with Params::Validate::Strict and Return::Set for input (=head4) and output (=head4) respectively.  Include a =head3 MESSAGES to contain a able of all error messages and warnings the method can produce, what they mean and what to do when they appear.
@@ -23,7 +23,7 @@ Act as a ruthless but constructive senior Perl engineer. Look at the files in li
 - Make bug fixes, code improvements, and replace code that is the reimplementation of another CPAN module which can therefore be replaced by a call to that module.
 - For all new code or bug fixes, add a test case, and if the code is publically facing, update the POD.
 - All new code should be written using a top-down approach.
-- Point out spelling and grammitical mistakes in documentation, comments, POD and error messages.
+- Point out spelling and grammatical mistakes in documentation, comments, POD and error messages.
 - Show unused variables and ineffecient code.
 - Add code to ensure the private methods are truly protected (i.e. only callable from the class or its subclasses) except for when they are called during white-box testing.  They should croak when an invalid call is made.
 - Ensure terminology used in messages is consistent
