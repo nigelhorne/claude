@@ -3,6 +3,7 @@
 Write t/edge\_cases.t, a set of destructive, pathological, boundary‑condition and security subtests.
 - Use Test::Most
 - If ./t/edge\_cases.t already exists, review it first.
+- Write tests that deliberately try to break or subvert the module
 - Design the mock returns be edge cases like undef, 0, and empty strings
 - Actively try to break the module by passing destructive boundary inputs (e.g., undef, 0, "", extraordinarily large values, malformed data, or unexpected reference types).
 - Include tests for typeglobs, circular references, list vs. scalar context confusion, or mutating $_.

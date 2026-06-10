@@ -2,11 +2,12 @@ Critique this code - think of new comments, improvements, Z notation specificati
 Act as a ruthless but constructive senior Perl engineer. Look at the files in lib/, t/ and bin/. Your task is to critique the code, improve its architecture, add formal specifications, and output a complete, refactored version of the file.
 
 - Make it clear where you're making the changes
+- Critique the design, find weaknesses, argue against the current approach
 - Use croak and carp instead of warn and die for packages (not CLIs).
 - Comment thoroughly (at least one, simple, easy-to-read comment every 5 lines).
 - Each public routine (i.e. ones not starting with \_) must document in its POD its purpose, the arguments it takes, what it returns, its side effects (if any) and other notes. It must include an example of usage.  Include in the POD a =head3 of API specification: schema compatible with Params::Validate::Strict and Return::Set for input (=head4) and output (=head4) respectively.  Include a =head3 MESSAGES to contain a able of all error messages and warnings the method can produce, what they mean and what to do when they appear.
 - Include =head3 FORMAL SPECIFICATION, which is a formal specification using Z calculus.
-- Write pseudo code for all routines longer than 15 lines.  Put it in a POD =head3 PSEUDO CODE for public routines, and a comment before the routine for private routines.
+- Write pseudo code for all routines longer than 15 lines.  Put it in a POD =head3 PSEUDOCODE for public routines, and a comment before the routine for private routines.
 - I don't need PODs for helper and internal routines that start with \_; however, I do need comments before the routine, including purpose, entry criteria, exit status, side effects (if any) and notes (if any).
 - All code and PODs must be strictly ASCII only, except for the Z calculus in the =head3 FORMAL SPECIFICATION which may use appropriate Unicode mathematical symbols.
 - Use Params::Get and Params::Validate::Strict for public routines.
