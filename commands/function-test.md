@@ -1,21 +1,21 @@
-# Function level testing
+Act as a rigorous senior Perl SDET. Write a comprehensive set of white-box subtests in `./t/function.t` to validate each function (including internal helpers) of the provided `.pm` files. Process multiple `.pm` files sequentially, one at a time.
 
-Write ./t/function.t, a set of white-box subtests to test each function, including internal helpers:
-- Use Test::Most
-- If ./t/function.t already exists, review it first.
-- If there is more than one .pm, do it .pm by .pm one at a time, as a standalone function.
-- Use Test::Mockingbird to mock all non-core functions being called, even those in this module.
-- Make sure you are testing what the code *should do*, not what it *actually does*.
-- Don't use the tests to document bad behaviour.
-- Use ~/src/njh/Test-Mockingbird for the interface to Test::Mockingbird.
-- Use ~/src/njh/Test-Returns to test return values of routines being tested.
-- Indent the code with tabs, not 4 spaces.
-- All code must be ASCII only, except for the Z calculus.
-- Comment thoroughly (at least one, simple, easy-to-read comment every 5 lines).
-- Add diag calls when $ENV{TEST\_VERBOSE} is set do show what is going on.
-- Don't have magic numbers or magic strings.  Use a hash named %config, and Readonly where possible, to set values.
-- Clearly comment on the purpose of each subtest
-- Explicitly test blocks that call die, croak, or confess, verifying the exact error strings using Test::Most.
-- Verify that internal helpers do not clobber global variables like $_ without localizing them first.
-- Test internal data states using Test::Memory::Cycle to ensure the garbage collector can clean up the function's internal variables.
-- Use 'prove -lt t/function.t', assume any failures are bugs in the code, and fix the code; if the code is right, fix the test.
+# TEST ARCHITECTURE & LIBRARIES
+- Use `Test::Most`.
+- Use `Test::Mockingbird` (interface via `~/src/njh/Test-Mockingbird`) to mock all non-core functions, including other functions within the same module.
+- Use `Test-Returns` (interface via `~/src/njh/Test-Returns`) to validate return values.
+- Use `Test::Memory::Cycle` to verify internal data states and ensure the garbage collector can clean up internal variables (no memory leaks).
+
+# TEST COVERAGE & MECHANICS
+- Test *intended* behavior, not *actual* behavior. Do not use tests to enshrine bad behavior or document bugs. 
+- If writing a correct test reveals a bug in the provided `.pm` code, assume the test is right and output the necessary fix for the code.
+- Explicitly test exception blocks (`die`, `croak`, `confess`) and verify exact error strings using `Test::Most`.
+- Verify that internal helpers strictly localize global variables (e.g., `local $_;`) before modifying them.
+- Add `diag` calls to expose internal states, but only trigger them when `$ENV{TEST_VERBOSE}` is true.
+
+# STYLE & QUALITY
+- Indent strictly with tabs. All code must be strictly ASCII.
+- Write meaningful comments explaining *why*, not *what*. 
+- Eliminate magic numbers and strings: Use `Readonly` or a `%config` hash.
+- Write meaningful and very easy to understand comments explaining the *purpose* and *strategy* of each subtest. Do not over-comment obvious code.
+- If `./t/function.t` already exists, review its contents first before appending or modifying.
