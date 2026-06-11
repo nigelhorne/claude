@@ -1,24 +1,28 @@
-# Edge case testing
+Act as a rigorous senior Perl SDET. Write a comprehensive set of destructive, pathological, boundary-condition, and security subtests in `./t/edge_cases.t` to actively try to break or subvert the module. Process multiple `.pm` files sequentially.
 
-Write t/edge\_cases.t, a set of destructive, pathological, boundary‑condition and security subtests.
-- Use Test::Most
-- If ./t/edge\_cases.t already exists, review it first.
-- Write tests that deliberately try to break or subvert the module
-- Design the mock returns be edge cases like undef, 0, and empty strings
-- Actively try to break the module by passing destructive boundary inputs (e.g., undef, 0, "", extraordinarily large values, malformed data, or unexpected reference types).
-- Include tests for typeglobs, circular references, list vs. scalar context confusion, or mutating $_.
-- Make sure you are testing what the code *should do*, not what it *actually does*.
-- Use ~/src/njh/Test-Mockingbird for the interface to Test::Mockingbird.
-- Use ~/src/njh/Test-Returns to test return values of routines being tested.
-- Use Test::Mockingbird to mock all functions being called outside of the module, as well as external database and network access. Crucially: design these mock returns to be edge cases (like undef, 0, and empty strings) to test how the module handles upstream failures
-- Explicitly test boundary conditions that should trigger die, croak, or confess. Verify the exact error strings using Test::Most (e.g., throws_ok).
-- Indent the code with tabs, not 4 spaces.
-- Comment thoroughly (at least one, simple, easy-to-read comment every 5 lines).
-- Add diag calls when $ENV{TEST\_VERBOSE} is set do show what is going on.
-- Don't have magic numbers or magic strings.  Use a hash named %config, and Readonly where possible, to set values.
-- Clearly comment on the purpose of each subtest
-- Explicitly test blocks that call die, croak, or confess, verifying the exact error strings using Test::Most.
-- Look for security issues and write tests to expose them.
-- Use 'prove -lt t/edge\_cases.t', assume any failures are bugs in the code, and fix the code; if the code is right, fix the test.
-- If you encounter a public subroutine that lacks a POD section, you must write the missing POD first. Infer the intended API, expected inputs, and return values from the subroutine's code. Then write the black-box tests based on that new documentation.  The POD documents purpose, the arguments it takes, what it returns, its side effects (if any) and other notes. It must include an example of usage.  Include in the POD a =head3 of API specification: schema compatible with Params::Validate::Strict and Return::Set for input (=head4) and output (=head4) respectively.  Include =head3 FORMAL SPECIFICATION, which is a formal specification using Z calculus.
-- All code and PODs must be strictly ASCII only, except for the Z calculus in the =head3 FORMAL SPECIFICATION, which may use appropriate Unicode mathematical symbols.
+# PRE-REQUISITE: POD ENFORCEMENT & ALIGNMENT
+- If a public subroutine lacks POD, write the missing POD first. Infer the intended API, expected inputs, and return values.
+  - Required POD sections: Purpose, Arguments, Returns, Side Effects, Usage Example.
+  - Include `=head3 API SPECIFICATION` with input (`=head4`) / output (`=head4`) schemas compatible with `Params::Validate::Strict` and `Return::Set`.
+  - Include `=head3 FORMAL SPECIFICATION` using Z calculus (Unicode permitted here).
+- Ensure tests are based strictly on the intended behavior described in the POD, not the actual behavior. Do not document bad behavior.
+
+# TEST ARCHITECTURE & LIBRARIES
+- If `./t/edge_cases.t` already exists, review it first before appending or modifying.
+- Use `Test::Most`.
+- Use `Test-Returns` (interface via `~/src/njh/Test-Returns`) to validate returns.
+- Use `Test::Mockingbird` (interface via `~/src/njh/Test-Mockingbird`) to mock all external functions, databases, and network calls. 
+  - CRITICAL: Design these mock returns specifically as upstream failures (e.g., `undef`, `0`, `""`) to test how the module handles downstream propagation.
+
+# TEST COVERAGE & HOSTILE MECHANICS
+- Hostile Inputs: Pass destructive boundary inputs (`undef`, `0`, `""`, extraordinarily large values, malformed data, unexpected reference types, typeglobs, and circular references).
+- State & Context Abuse: Include tests designed to trigger list vs. scalar context confusion, or unlocalized mutations of `$_`.
+- Security: Actively look for security vulnerabilities and write tests designed to expose them.
+- Exceptions: Explicitly test boundary conditions that should trigger `die`, `croak`, or `confess`. Verify the exact error strings using `Test::Most` (e.g., `throws_ok`).
+- If writing a correct test reveals a bug/vulnerability in the code, assume the test is right and output the necessary fix for the code.
+- Add `diag` calls to expose internal states, but only trigger them when `$ENV{TEST_VERBOSE}` is true.
+
+# STYLE & QUALITY
+- Indent strictly with tabs. All code must be strictly ASCII (except Z calculus).
+- Eliminate magic numbers and strings: Use `Readonly` or a `%config` hash.
+- Write meaningful comments explaining the *purpose* and *strategy* of each destructive subtest.
