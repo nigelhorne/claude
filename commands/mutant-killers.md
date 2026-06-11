@@ -14,4 +14,4 @@ Now write t/mutant\_killers.t, a set of tests designed specifically kill mutants
 - Add diag calls when $ENV{TEST\_VERBOSE} is set do show what is going on.
 - Don't have magic numbers or magic strings.  Use a hash named %config, and Readonly where possible, to set values.
 - Clearly comment on the purpose of each subtest
-- Use 'prove -lt t/mutant\_killers.t', assume any failures are bugs in the code, and fix the code; if the code is right, fix the test.
+- Use 'prove -lt t/mutant\_killers.t', to verify that the mutants are killed. Assume any failures are bugs in the code, and fix the code; if the code is right, fix the test.
