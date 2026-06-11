@@ -1,27 +1,22 @@
-Act as a rigorous senior Perl SDET. Write a comprehensive set of tests in `./t/extended_tests.t` designed specifically to hit untested execution paths, targeting a minimum of 95% total coverage and high LCSAJ/TER3 scores. 
+Act as a rigorous senior Perl SDET specializing in mutation testing. Write a comprehensive set of tests in `./t/mutant_killers.t` to explicitly kill the mutants described in the most recent stub file located in `./xt/`.
 
-# PRE-REQUISITE: POD ENFORCEMENT & ALIGNMENT
-- If a public subroutine lacks POD, write the missing POD first. Infer the intended API, expected inputs, and return values.
-  - Required POD sections: Purpose, Arguments, Returns, Side Effects, Usage Example.
-  - Include `=head3 API SPECIFICATION` with input (`=head4`) / output (`=head4`) schemas compatible with `Params::Validate::Strict` and `Return::Set`.
-  - Include `=head3 FORMAL SPECIFICATION` using Z calculus (Unicode permitted here).
-- Ensure tests are based strictly on the intended behavior described in the POD. Do not document bad behavior.
+# PRE-REQUISITE: STUB ANALYSIS
+- Locate and parse the most recent auto-generated stub file (`xt/mutant_*.t`) created by `App::Test::Generator`.
+- Ensure tests enforce what the code *should do* (intended behavior), not what it currently does.
 
 # TEST ARCHITECTURE & LIBRARIES
-- Examine all existing test cases in the `t/` directory first to identify coverage gaps.
-- If `./t/extended_tests.t` already exists, review it before appending or modifying.
+- If `./t/mutant_killers.t` already exists, review it first before appending or modifying.
 - Use `Test::Most`.
 - Use `Test-Returns` (interface via `~/src/njh/Test-Returns`) to validate returns.
 
-# COVERAGE & RETROACTIVE UPDATES
-- Execution Paths: Write tests to explicitly cover remaining conditional branches and complex pathways to maximize LCSAJ scores.
-- Dead Code: Identify any execution paths that are entirely unreachable. Comment this code out and explicitly flag it in your output for my review.
-- Exceptions: Explicitly test blocks that call `die`, `croak`, or `confess`, verifying exact error strings.
-- Code Fixes: If a test reveals a bug in the code, assume the test is right and output the necessary fix for the code.
-- Retroactive Updates: If new code was written or fixed during the creation of this file, you MUST generate the corresponding updates for `function.t`, `unit.t`, `integration.t`, and `edge_cases.t` to ensure the entire suite remains fully synchronized.
+# MUTANT KILLING & MECHANICS
+- Reverse-Engineer State: Analyze the `.pm` code in `./lib/` to determine the exact constructor arguments, object state, and external dependencies required to reach the mutated line. Replace generic `new_ok()` calls in the stub with this precise state setup.
+- Kill the Mutant: Write assertions that enforce intended behavior AND will explicitly fail if the described mutation (e.g., inverted condition, negated boolean, replaced return value) is applied.
+- Upgrade Hints: If "LOW DIFFICULTY HINTS" are commented out at the bottom of the stub, uncomment them and implement real assertions to cover those scenarios.
+- Code Fixes: If writing a valid mutant-killer test reveals an actual bug in the source code, assume the test is right and output the necessary fix for the code.
 - Add `diag` calls to expose internal states, but only trigger them when `$ENV{TEST_VERBOSE}` is true.
 
 # STYLE & QUALITY
-- Indent strictly with tabs. All code must be strictly ASCII (except Z calculus).
+- Indent strictly with tabs. All code must be strictly ASCII (except Z calculus if applicable).
 - Eliminate magic numbers and strings: Use `Readonly` or a `%config` hash.
-- Write meaningful comments explaining the *purpose* and *strategy* of each subtest.
+- Write meaningful comments explaining the *strategy* of each subtest, specifically detailing exactly how it targets and kills the mutation.
