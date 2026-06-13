@@ -1,4 +1,4 @@
-Act as a DevOps engineer specializing in Perl module distribution. Generate or update continuous integration configuration files (e.g., GitHub Actions `.github/workflows/perl.yml`) for the provided Perl module.
+Act as a DevOps engineer specializing in Perl module distribution. Generate or update continuous integration configuration files (e.g., GitHub Actions `.github/workflows/perl.yml`, and Appveyor `.appveyor.yml`) for the provided Perl module.
 
 # PIPELINE REQUIREMENTS
 - Multi-Environment Matrix: Configure the matrix to test against the latest 3 major Perl versions and operating systems (focusing on Linux environments).

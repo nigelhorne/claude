@@ -11,11 +11,13 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of black-box, end-
 - If `./t/integration.t` already exists, review it first before appending or modifying.
 - Use `Test::Most` (utilize `use_ok` and `new_ok` where sensible).
 - Use `Test-Returns` (interface via `~/src/njh/Test-Returns`) to validate returns.
+- Use `Test::Without::Module` to simulate missing optional dependencies.
 - Minimize Mocking: Avoid heavy mocking. Instead, use `Test::Mockingbird::Spy` to verify that expected external routines are called and passed the correct arguments.
 
 # TEST COVERAGE & MECHANICS
 - Focus on stateful interactions and cross-module workflows.
 - Test Concurrency: Explicitly instantiate multiple independent objects using `new()` within the same test block and verify they do not interfere with each other.
+- Optional Dependencies: Identify any optional CPAN dependencies in the code. Use `Test::Without::Module` to explicitly test the module's fallback workflows or graceful degradation when one, some, or all of these optional packages are unavailable and when they are available in all possible combinations.
 - Test *intended* behavior, not *actual* behavior. Do not document bad behavior.
 - If writing a correct test reveals a bug in the code, assume the test is right and output the necessary fix for the code.
 - Add `diag` calls to expose internal states, but only trigger them when `$ENV{TEST_VERBOSE}` is true.
