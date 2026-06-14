@@ -16,6 +16,7 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of black-box subte
 # TEST COVERAGE & MECHANICS
 - Test *intended* behavior per the API documentation, not *actual* behavior. Do not document bad behavior.
 - If writing a correct test reveals a bug in the code, assume the test is right and output the necessary fix for the code.
+- Global State Integrity: Assert that routines do not clobber external global variables (e.g., $@, $!, $_) and do not interfere with system states, such as countdown timers set via alarm().
 - Explicitly test exception blocks (`die`, `croak`, `confess`) and verify exact error strings using `Test::Most`.
 - Add `diag` calls to expose states, but only trigger them when `$ENV{TEST_VERBOSE}` is true.
 
