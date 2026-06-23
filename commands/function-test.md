@@ -1,4 +1,4 @@
-Act as a rigorous senior Perl SDET. Write a comprehensive set of white-box subtests in `./t/function.t` to validate each function (including internal helpers) of the provided `.pm` files. Process multiple `.pm` files sequentially, one at a time.
+Act as a rigorous senior Perl SDET. Write a comprehensive set of white-box subtests in `./t/function.t` to validate each function (including internal helpers) of all `.pm` files in `./lib/`. Process multiple `.pm` files sequentially, one at a time.
 
 # TEST ARCHITECTURE & LIBRARIES
 - Use `Test::Most`.
