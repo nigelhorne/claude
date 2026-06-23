@@ -31,6 +31,7 @@ Act as a ruthless but constructive senior Perl architect. Critique and, where ne
 
 # TESTING REQUIREMENTS
 - Write/update tests for all new code and bug fixes.
+- Test Suite Synchronization: For any new code, structural changes, or bug fixes introduced during refactoring, you MUST write or update the corresponding tests in the existing `t/` directory to ensure the new execution paths are thoroughly covered.
 - Explicitly test locales (t/locales.t):
 1. Geographic (GeoIP): Test country-based access (GB, US, FR, DE, CN). Start with a sanity subtest (use `BAIL_OUT` on mapping failure) to catch GeoIP drift. Cover case-insensitivity and concurrent instances.
 2. System (POSIX): Test error paths triggering OS strings under `$ENV{LC_ALL}` set to `en_US.UTF-8`, `de_DE.UTF-8`, and an East Asian language. 
