@@ -1,0 +1,182 @@
+=pod
+
+=head1 NAME
+
+Claude Skills for Perl SDET & Architecture
+
+=head1 DESCRIPTION
+
+A curated collection of highly optimized, token-efficient system prompts ("skills") designed for Anthropic's Claude LLM. These skills transform Claude into a ruthless, constructive Senior Perl Architect and SDET, capable of automating the entire Perl software development lifecycle--from scaffolding and modernization to pathological edge-case testing and CPAN release auditing.
+
+Designed specifically for the B<Claude Code CLI> (but completely usable in the web UI or other API wrappers), these prompts use strict formatting, agentic instructions, and C<< <thinking> >> protocols to eliminate AI hallucinations and enforce modern, rigorous Perl standards.
+
+=head1 DESIGN PHILOSOPHY
+
+These skills are engineered to bypass common LLM traps:
+
+=over 4
+
+=item *
+
+B<Token Efficiency:> Conversational filler is stripped out. Instructions are dense, structured, and scannable.
+
+=item *
+
+B<No Hallucinated Executions:> Instead of commanding the AI to "run C<prove>" (which it cannot natively do without terminal tools), the prompts instruct Claude to simulate the execution via static analysis and automatically fix the code if it spots a failure.
+
+=item *
+
+B<Strict Adherence to Standards:> Enforces C<use strict;>, C<use warnings;>, C<use autodie qw(:all);>, strict tab indentation, and ASCII-only code.
+
+=item *
+
+B<Self-Correction:> Implements C<< <thinking> >> blocks so Claude verifies its logic, identifies dead code, and double-checks POD drift I<before> generating final output.
+
+=back
+
+=head1 THE SKILL DIRECTORY
+
+=head2 Architecture & Code Quality
+
+=over 4
+
+=item *
+
+B<C<critique.md>>: Deep static analysis. Refactors code, enforces C<Sub::Private>/C<Sub::Protected> encapsulation, resolves C<TODO>s, and synchronizes POD.
+
+=item *
+
+B<C<modernize.md>>: Upgrades ancient legacy Perl to modern standards, enforcing C<Params::Validate::Strict> and replacing outdated CPAN modules.
+
+=item *
+
+B<C<new-code-boilerplate.md>>: Generates strict, architecturally sound skeleton C<.pm> files with full Z-calculus POD schemas.
+
+=item *
+
+B<C<performance-review.md>>: Analyzes Big-O complexity, memory bloat, and flags inefficient array/hash operations.
+
+=item *
+
+B<C<regex-audit.md>>: Hunts for Catastrophic Backtracking (ReDoS) vulnerabilities and optimizes capture groups for memory efficiency.
+
+=back
+
+=head2 Comprehensive Testing Suite (SDET)
+
+=over 4
+
+=item *
+
+B<C<function-test.md>>: White-box tests for internal functions, mocking internals with C<Test::Mockingbird> and checking memory cycles.
+
+=item *
+
+B<C<unit-test.md>>: Black-box API tests based strictly on the POD. Asserts global state integrity (C<$@>, C<$!>, C<$_>).
+
+=item *
+
+B<C<integration-test.md>>: End-to-end tests across multiple packages. Uses spies over mocks and verifies concurrency and missing optional dependencies (C<Test::Without::Module>).
+
+=item *
+
+B<C<edge-cases.md>>: Destructive boundary tests. Actively tries to break the module by passing malformed inputs and simulating upstream failures.
+
+=item *
+
+B<C<extended-tests.md>>: Chases 95%+ coverage and high LCSAJ/TER3 scores by deliberately targeting untested conditional branches and identifying dead code.
+
+=item *
+
+B<C<mutant-killers.md>>: Reverse-engineers object states to explicitly kill auto-generated mutation testing stubs.
+
+=back
+
+=head2 Security & DevSecOps
+
+=over 4
+
+=item *
+
+B<C<security-audit.md>>: Static application security testing (SAST). Hunts for taint mode failures, eval dangers, command injection, and insecure C</tmp/> file usage.
+
+=item *
+
+B<C<pen-test.md>>: Dynamic testing simulation for CGI scripts. Injects hostile payloads into localized C<%ENV> variables to test for command injection, traversal, and XSS.
+
+=back
+
+=head2 CI/CD & Deployment
+
+=over 4
+
+=item *
+
+B<C<ci-review.md>>: Generates or updates GitHub Actions/AppVeyor YAMLs with locale-resilience matrix testing, dependency caching, and code coverage reporting.
+
+=item *
+
+B<C<cpan-audit.md>>: The final pre-release checklist. Verifies C<$VERSION> sync, dependency completeness, C<MANIFEST> accuracy, and leftover debugging artifacts.
+
+=back
+
+=head2 Professional Workflow
+
+=over 4
+
+=item *
+
+B<C<crash-analyzer.md>>: Ingests raw stack traces or core dumps, isolates the root cause, outputs the patched code, and writes a regression test.
+
+=item *
+
+B<C<handover-generator.md>>: Converts unstructured project notes into a polished, structured transition manual for remote teams.
+
+=back
+
+=head1 HOW TO USE (CLAUDE CODE CLI)
+
+If you are using the L<Claude Code CLI|https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview>, you can leverage these markdown files directly by aliasing them or passing them as contextual prompts.
+
+Because Claude Code has file-system access, you can run commands like:
+
+	# Example: Run a security audit on a specific module
+	claude -p security-audit.md "Review lib/MyModule.pm"
+
+	# Example: Run the CPAN audit on the whole repository
+	claude -p cpan-audit.md "Do a final check of this repo"
+
+I<Pro-Tip: You can set up custom bash aliases in your C<~/.bashrc> or C<~/.zshrc> to make execution instantaneous:>
+
+	alias claude-critique='claude -p /path/to/repo/critique.md'
+	alias claude-pentest='claude -p /path/to/repo/pen-test.md'
+
+=head1 HOW TO USE (WEB INTERFACE / CUSTOM WRAPPERS)
+
+=over 4
+
+=item 1.
+
+Open a new chat or create a "Project" in Claude.
+
+=item 2.
+
+Upload the desired C<.md> skill file to the project's knowledge base (or paste it into the system instructions).
+
+=item 3.
+
+Provide the target Perl code or filename in your prompt: I<"Run the critique skill on the attached C<User.pm> file.">
+
+=back
+
+=head1 LICENCE AND COPYRIGHT
+
+This toolkit is provided as-is. Feel free to fork, adapt, and integrate into your own CI/CD pipelines and prompt libraries.
+
+Copyright 2026 Nigel Horne.
+
+Usage is subject to the GPL2 licence terms.
+If you use it,
+please let me know.
+
+=cut
