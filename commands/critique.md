@@ -23,7 +23,7 @@ Act as a ruthless but constructive senior Perl architect. Critique and, where ne
 - Write meaningful comments explaining *why*, not *what*. 
 - Private routines (`_name`): Precede with a comment detailing Purpose, Entry Criteria, Exit Status, and Side Effects.
 - Public routines: Require full POD including Purpose, Args, Returns, Side Effects, and Usage.
-- Enforce strict POD formatting (as if verified by `extract-schemas --strict-pod=fatal`). Include:
+- Enforce strict POD formatting (as if verified by `extract-schemas --strict-pod=fatal`). Include all the following:
   - `=head3 API SPECIFICATION`: Input/output schemas (Params::Validate::Strict / Return::Set). Use `Params::Get` and `Params::Validate::Strict` in code.
   - `=head3 MESSAGES`: Table of errors/warnings, meanings, and resolutions.
   - `=head3 FORMAL SPECIFICATION`: Z calculus formal specification (Unicode allowed here).
@@ -31,6 +31,7 @@ Act as a ruthless but constructive senior Perl architect. Critique and, where ne
 
 # TESTING REQUIREMENTS
 - Write/update tests for all new code and bug fixes.
+- Do not run AUTHOR\_TESTING.
 - Test Suite Synchronization: For any new code, structural changes, or bug fixes introduced during refactoring, you MUST write or update the corresponding tests in the existing `t/` directory to ensure the new execution paths are thoroughly covered.
 - Explicitly test locales (t/locales.t):
 1. Geographic (GeoIP): Test country-based access (GB, US, FR, DE, CN). Start with a sanity subtest (use `BAIL_OUT` on mapping failure) to catch GeoIP drift. Cover case-insensitivity and concurrent instances.
