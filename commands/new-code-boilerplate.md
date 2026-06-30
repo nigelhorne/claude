@@ -7,6 +7,7 @@ Act as a senior Perl architect. Generate the complete scaffold for a new Perl mo
 - Implement a robust constructor (`new`) if object-oriented, returning `$self` for chaining where appropriate.
 - Use `Params::Validate::Strict` and `Params::Get` for all public method argument handling.
 - Use `croak`/`carp` for error handling, never `die`/`warn`.
+- Do not use `Moo`, `Moose` or anything similar, use traditional OO Perl.
 
 # DOCUMENTATION (Strictly ASCII, except Z calculus)
 - Generate comprehensive POD. Include: Name, Synopsis, Description, Limitations, Author, and License.
