@@ -10,8 +10,8 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of black-box subte
 # TEST ARCHITECTURE & LIBRARIES
 - If `./t/unit.t` already exists, review it first before appending or modifying.
 - Use `Test::Most`.
-- Use `Test::Mockingbird` (interface via `~/src/njh/Test-Mockingbird`) to mock all external functions, database access, and network calls. Design mock returns to force execution through *every* conditional branch.
-- Use `Test-Returns` (interface via `~/src/njh/Test-Returns`) to validate return values.
+- Use `Test::Mockingbird` to mock all external functions, database access, and network calls. Design mock returns to force execution through *every* conditional branch.
+- Use `Test::Returns` to validate return values.
 
 # TEST COVERAGE & MECHANICS
 - Test *intended* behavior per the API documentation, not *actual* behavior. Do not document bad behavior.

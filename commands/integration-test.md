@@ -10,7 +10,7 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of black-box, end-
 # TEST ARCHITECTURE & LIBRARIES
 - If `./t/integration.t` already exists, review it first before appending or modifying.
 - Use `Test::Most` (utilize `use_ok` and `new_ok` where sensible).
-- Use `Test-Returns` (interface via `~/src/njh/Test-Returns`) to validate returns.
+- Use `Test::Returns` to validate returns.
 - Use `Test::Without::Module` to simulate missing optional dependencies.
 - Minimize Mocking: Avoid heavy mocking. Instead, use `Test::Mockingbird::Spy` to verify that expected external routines are called and passed the correct arguments.
 
