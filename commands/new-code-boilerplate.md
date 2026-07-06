@@ -9,6 +9,7 @@ Act as a senior Perl architect. Generate the complete scaffold for a new Perl mo
 - Use `Params::Validate::Strict` and `Params::Get` for all public method argument handling.
 - Use `croak`/`carp` for error handling, never `die`/`warn`.
 - Do not use `Moo`, `Moose` or anything similar, use traditional OO Perl.
+- Internationalization (i18n): Never hardcode user-facing strings or exceptions. Scaffold a configurable message dictionary (e.g., `%MESSAGES` or a `Readonly` hash) or require an i18n translation object during instantiation. All output and exceptions must route through an i18n formatting method using keys (e.g., `error_invalid_input`) mapped to `sprintf`-compatible strings.
 
 # DOCUMENTATION (Strictly ASCII, except Z calculus)
 - Generate comprehensive POD. Include: Name, Synopsis, Description, Limitations, Author, and License.
