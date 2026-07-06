@@ -5,6 +5,7 @@ Act as a senior Perl architect. Generate the complete scaffold for a new Perl mo
 - Indent strictly with tabs. All code must be strictly ASCII.
 - Use `Readonly` or a `%config` hash for all constants. No magic numbers/strings.
 - Implement a robust constructor (`new`) if object-oriented, returning `$self` for chaining where appropriate.
+- Return references (arrayrefs/hashrefs) rather than flat arrays or hashes to minimize stack usage.
 - Use `Params::Validate::Strict` and `Params::Get` for all public method argument handling.
 - Use `croak`/`carp` for error handling, never `die`/`warn`.
 - Do not use `Moo`, `Moose` or anything similar, use traditional OO Perl.
