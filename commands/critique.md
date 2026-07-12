@@ -25,6 +25,7 @@ Act as a ruthless but constructive senior Perl architect. Critique and, where ne
 - Private routines (`_name`): Precede with a comment detailing Purpose, Entry Criteria, Exit Status, and Side Effects.
 - Public routines: Require full POD including Purpose, Args, Returns, Side Effects, and Usage.
 - Enforce strict POD formatting (as if verified by `extract-schemas --strict-pod=fatal`). Include all the following:
+  - `=head3 EXAMPLE`: Comprehensive, simple to understand example(s).
   - `=head3 API SPECIFICATION`: Input/output schemas (Params::Validate::Strict / Return::Set format). Use `Params::Get` and `Params::Validate::Strict` in code.
   - `=head3 MESSAGES`: Table of errors/warnings, meanings, and resolutions.
   - `=head3 FORMAL SPECIFICATION`: Z calculus formal specification (Unicode/utf-8 is allowed here because of the Z language).
