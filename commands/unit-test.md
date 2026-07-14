@@ -16,9 +16,10 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of black-box subte
 # TEST COVERAGE & MECHANICS
 - Test *intended* behavior per the API documentation, not *actual* behavior. Do not document bad behavior.
 - If writing a correct test reveals a bug in the code, assume the test is right and output the necessary fix for the code.
+- Exhaustive API Coverage: Explicitly mock conditions to trigger EVERY message (error/warning) and EVERY return state/code documented in the POD. Assert exact strings and codes using `Test::Most`.  Explicitly test exception blocks (`die`, `croak`, `confess`) and verify exact error strings using `Test::Most`.
 - Global State Integrity: Assert that routines do not clobber external global variables (e.g., $@, $!, $_) and do not interfere with system states, such as countdown timers set via alarm().
-- Explicitly test exception blocks (`die`, `croak`, `confess`) and verify exact error strings using `Test::Most`.
 - Add `diag` calls to expose states, but only trigger them when `$ENV{TEST_VERBOSE}` is true.
+- Exhaustive API Ledger: Extract all documented messages and return codes from the POD into a tracking hash (ledger) at the start of the test. As mock conditions successfully trigger each state, delete it from the ledger. Conclude the script by asserting the ledger is empty; explicitly `fail()` if untested POD conditions remain.
 
 # STYLE & QUALITY
 - Indent strictly with tabs. All code must be strictly ASCII (except Z calculus).
