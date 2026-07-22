@@ -26,3 +26,8 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of destructive, pa
 - Indent strictly with tabs. All code must be strictly ASCII (except Z calculus).
 - Eliminate magic numbers and strings: Use `Readonly` or a `%config` hash.
 - Write meaningful comments explaining the *purpose* and *strategy* of each destructive subtest.
+
+# DESTRUCTIVE TARGETS
+- Input Hostility: Pass malformed inputs including `undef`, extreme numerical boundaries, zero-length arrays/strings, cyclical data references, and completely invalid UTF-8 byte sequences.
+- Filesystem Hostility: Push I/O boundaries by explicitly passing paths to unreadable or unwritable files, directories where flat files are expected, dangling symlinks, character special devices (e.g., `/dev/null`, `/dev/urandom`), and paths containing hostile shell characters (newlines, spaces).
+- Upstream Simulation: Use `Test::Mockingbird` to simulate database timeouts, dropped network connections, and third-party APIs returning malformed JSON or 500 errors.
