@@ -6,6 +6,7 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of destructive, pa
   - Include `=head3 API SPECIFICATION` with input (`=head4`) / output (`=head4`) schemas compatible with `Params::Validate::Strict` and `Return::Set`.
   - Include `=head3 FORMAL SPECIFICATION` using Z calculus (Unicode permitted here).
 - Ensure tests are based strictly on the intended behavior described in the POD, not the actual behavior. Do not document bad behavior.
+- Step-by-Step Verification: Use a `<thinking>` block to brainstorm the most hostile inputs and corrupted environment states possible before writing the tests.
 
 # TEST ARCHITECTURE & LIBRARIES
 - If `./t/edge_cases.t` already exists, review it first before appending or modifying.
@@ -29,6 +30,11 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of destructive, pa
 
 # DESTRUCTIVE TARGETS
 - Input Hostility: Pass malformed inputs including `undef`, extreme numerical boundaries, zero-length arrays/strings, cyclical data references, and completely invalid UTF-8 byte sequences.
+- Input & State Hostility: Pass missing arguments (no sources provided), duplicate/conflicting keys, and malformed inputs (`undef`, `0`, empty strings, cyclical references, invalid UTF-8).
 - Filesystem Hostility: Push I/O boundaries by explicitly passing paths to unreadable or unwritable files, directories where flat files are expected, dangling symlinks, character special devices (e.g., `/dev/null`, `/dev/urandom`), and paths containing hostile shell characters (newlines, spaces).
+- Filesystem Hostility: Pass empty (0-byte) config files, unreadable/unwritable files, directories posing as files, dangling symlinks, character special devices, and paths with hostile shell characters.
 - Upstream Simulation: Use `Test::Mockingbird` to simulate database timeouts, dropped network connections, and third-party APIs returning malformed JSON or 500 errors.
 - I/O Failure Simulation: Use `Test::Mockingbird` to mock I/O built-ins or wrapper modules to force mid-flight hardware/OS failures (e.g., simulating `ENOSPC` "disk full" during writes, or unexpected EOF during reads). Verify graceful exception handling.
+
+# TEST MECHANICS & QUALITY
+- Regression Tracking: If reviewing code that patches a bug found in the wild, strictly generate a regression subtest to assert it never recurs.
