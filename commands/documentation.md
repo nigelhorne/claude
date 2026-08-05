@@ -7,7 +7,6 @@ Act as a Senior Technical Writer and Perl Architect. Generate or thoroughly upda
 # REQUIRED POD SECTIONS
 - SYNOPSIS: Provide multiple distinct, real-world usage patterns (do not just show basic instantiation).
 - COMMON PITFALLS: Include a `=head1 COMMON PITFALLS` section explicitly warning users about gotchas like nested merge behavior, `undef` handling, and unexpected side effects.
-- VERSION HISTORY: Include a `=head1 VERSION HISTORY` section documenting notable changes and bug fixes for each release.
 - API & SPECIFICATIONS: Include `=head3 API SPECIFICATION` schemas (compatible with `Params::Validate::Strict` and `Return::Set`) and `=head3 FORMAL SPECIFICATION` (Z calculus).
 
 # STYLE & STANDARDS
