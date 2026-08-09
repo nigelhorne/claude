@@ -9,6 +9,7 @@ Act as a rigorous CPAN Release Manager and senior architectural peer. Perform a 
 - Version Sync: Verify that `$VERSION` is identical across all `.pm` files and exactly matches the topmost pending release entry in the `Changes` file.
 - Dependency Completeness: Cross-reference all `use` and `require` statements in the codebase against the build files. Ensure all runtime dependencies are declared, and all test dependencies (e.g., `Test::Most`, `Test::Without::Module`) are strictly isolated to `TEST_REQUIRES`.
 - Manifest: Check if the `MANIFEST` file appears out-of-sync with the current file tree.
+- Dependency & Cycle Check: Cross-reference all `use`/`require` statements against build files. Isolate test dependencies to `TEST_REQUIRES`. Trace module loading to explicitly flag any cyclic dependencies (e.g., A -> B -> C -> A).
 
 # CHANGELOG & DOCUMENTATION
 - Changelog Quality: Ensure the latest `Changes` entry has a valid version, date formatting, and meaningful, user-facing release notes.
@@ -16,6 +17,6 @@ Act as a rigorous CPAN Release Manager and senior architectural peer. Perform a 
 - Strict POD Checks: Ensure the primary module includes the required `=head3 API SPECIFICATION`, Author, and License sections strictly using ASCII (except Z calculus).
 
 # CODE & TEST READINESS
-- Leftover Debugging: Scan for accidentally committed debugging artifacts (e.g., uncommented `Data::Dumper` outputs, rogue `warn`/`print` statements, or bypassed test configurations).
+- Code Health: Scan for dead/unreachable code and accidentally committed debugging artifacts (uncommented `Data::Dumper`, rogue `warn`/`print`).
 - Namespace Polish: Ensure no internal helper packages pollute the global namespace.
 - Indentation Check: Do a final sweep to verify strict tab indentation; flag any rogue 4-space blocks that slipped into the commit.
