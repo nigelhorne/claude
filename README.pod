@@ -90,6 +90,10 @@ B<C<extended-tests.md>>: Chases 95%+ coverage and high LCSAJ/TER3 scores by deli
 
 B<C<mutant-killers.md>>: Reverse-engineers object states to explicitly kill auto-generated mutation testing stubs.
 
+=item *
+
+B<C<path-tests.md>>: Maps Control Flow Graphs (CFGs) to generate exhaustive path-coverage tests, while actively injecting C<TODO> markers into the source code for unreachable or dead lines.
+
 =back
 
 =head2 Security & DevSecOps
