@@ -36,6 +36,7 @@ These skills are engineered to bypass common LLM traps:
 - **`extended-tests.md`**: Chases 95%+ coverage and high LCSAJ/TER3 scores by deliberately targeting untested conditional branches and identifying dead code.
 - **`mutant-killers.md`**: Reverse-engineers object states to explicitly kill auto-generated mutation testing stubs.
 * **`path-tests.md`**: Maps Control Flow Graphs (CFGs) to generate exhaustive path-coverage tests, while actively injecting `TODO` markers into the source code for unreachable or dead lines.
+* **`transaction-flow.md`**: Validates the complete lifecycle of data entities and business processes. Asserts state machine transitions, multi-step transaction rollbacks on mid-flight failures, and operation idempotency.
 
 ## Security & DevSecOps
 
