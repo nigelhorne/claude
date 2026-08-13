@@ -15,6 +15,7 @@ Act as a rigorous CPAN Release Manager and senior architectural peer. Perform a 
 - Changelog Quality: Ensure the latest `Changes` entry has a valid version, date formatting, and meaningful, user-facing release notes.
 - README.md Sync: Verify the `README.md` accurately reflects the primary module's current `NAME`, `SYNOPSIS`, and `DESCRIPTION` from the POD.
 - Strict POD Checks: Ensure the primary module includes the required `=head3 API SPECIFICATION`, Author, and License sections strictly using ASCII (except Z calculus).
+- POD Gap Analysis: Cross-reference the test suite against the POD. If the tests cover behaviors, return codes, or edge cases that are absent from the documentation, output the necessary POD updates.
 
 # CODE & TEST READINESS
 - Code Health: Scan for dead/unreachable code and accidentally committed debugging artifacts (uncommented `Data::Dumper`, rogue `warn`/`print`).

@@ -6,6 +6,7 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of black-box subte
   - Include `=head3 API SPECIFICATION` with input (`=head4`) / output (`=head4`) schemas compatible with `Params::Validate::Strict` and `Return::Set`.
   - Include `=head3 FORMAL SPECIFICATION` using Z calculus (Unicode permitted here).
 - Cross-reference code behavior with the POD. Ensure the documentation correctly reflects the intended behavior. Write tests based strictly on the POD.
+- POD Feedback Loop: If writing or fixing the test script reveals undocumented behaviors, implicit arguments, or hidden return states, immediately output the necessary updates to the module's POD.
 
 # TEST ARCHITECTURE & LIBRARIES
 - If `./t/unit.t` already exists, review it first before appending or modifying.
