@@ -9,6 +9,7 @@ Act as a Senior Perl SDET and Domain Analysis Expert. Generate comprehensive dom
 - Combinatorial Boundaries: Test edge-case interactions (e.g., Parameter A at its maximum while Parameter B is at its minimum).
 - Format Domains: If an input requires a specific format (e.g., Regex validation, UTF-8), test the partition of valid formats against the partition of malformed formats.
 - Explicit Rejection: Use `Test::Most` (`throws_ok`) to assert that invalid data fails cleanly and generates the exact error message documented in the POD.
+- Multibyte & Character Domains: For any parameter accepting user text, explicitly test partitions containing non-ASCII characters (e.g., German umlauts like 'ü' or 'ß'), complex multibyte emojis, Zalgo text, and right-to-left (RTL) overrides. Assert that the system processes them sensibly without fatal crashes, character corruption, or length-calculation panics.
 
 # POD DOCUMENTATION UPDATES
 - API Documentation Sync: You MUST output the necessary POD updates. Explicitly document these valid/invalid domains, partitions, and boundary limits under the `=head3 API SPECIFICATION` (or equivalent =head4 input section) for each public method.
