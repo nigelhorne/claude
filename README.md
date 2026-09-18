@@ -47,6 +47,7 @@ These skills are engineered to bypass common LLM traps:
 ## CI/CD & Deployment
 
 - **`ci-review.md`**: Generates or updates GitHub Actions/AppVeyor YAMLs with locale-resilience matrix testing, dependency caching, and code coverage reporting.
+* **`gap-analysis.md`**: Performs a comprehensive pre-release audit to identify missing test coverage, unhandled input domains, and unresolved `TODO` markers. Generates a strategic post-release roadmap focusing on new feature ideation and architectural evolution.
 - **`cpan-audit.md`**: The final pre-release checklist. Verifies `$VERSION` sync, dependency completeness, `MANIFEST` accuracy, and leftover debugging artifacts.
 
 ## Professional Workflow

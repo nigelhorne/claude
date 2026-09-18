@@ -128,6 +128,10 @@ B<C<ci-review.md>>: Generates or updates GitHub Actions/AppVeyor YAMLs with loca
 
 =item *
 
+B<C<gap-analysis.md>>: Performs a comprehensive pre-release audit to identify missing test coverage, unhandled input domains, and unresolved C<TODO> markers. Generates a strategic post-release roadmap focusing on new feature ideation and architectural evolution.
+
+=item *
+
 B<C<cpan-audit.md>>: The final pre-release checklist. Verifies C<$VERSION> sync, dependency completeness, C<MANIFEST> accuracy, and leftover debugging artifacts.
 
 =back
