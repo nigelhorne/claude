@@ -34,6 +34,7 @@ These skills are engineered to bypass common LLM traps:
 - **`integration-test.md`**: End-to-end tests across multiple packages. Uses spies over mocks and verifies concurrency and missing optional dependencies (`Test::Without::Module`).
 - **`edge-cases.md`**: Destructive boundary tests. Actively tries to break the module by passing malformed inputs and simulating upstream failures.
 - **`extended-tests.md`**: Chases 95%+ coverage and high LCSAJ/TER3 scores by deliberately targeting untested conditional branches and identifying dead code.
+* **`logic-tests.md`**: Mathematically proves boolean expressions, state invariants, and syllogistic premises. Generates truth table permutations and verifies that logical contradictions are strictly trapped based on formal specifications.
 - **`mutant-killers.md`**: Reverse-engineers object states to explicitly kill auto-generated mutation testing stubs.
 * **`path-tests.md`**: Maps Control Flow Graphs (CFGs) to generate exhaustive path-coverage tests, while actively injecting `TODO` markers into the source code for unreachable or dead lines.
 * **`transaction-flow.md`**: Validates the complete lifecycle of data entities and business processes. Asserts state machine transitions, multi-step transaction rollbacks on mid-flight failures, and operation idempotency.
