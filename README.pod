@@ -92,6 +92,10 @@ B<C<logic-tests.md>>: Mathematically proves boolean expressions, state invariant
 
 =item *
 
+B<C<transition-tests.md>>: Verifies and validates Finite State Machine (FSM) transitions against the POD's state diagram. Proves all valid state changes, asserts side-effects, and strictly traps illegal transitions.
+
+=item *
+
 B<C<mutant-killers.md>>: Reverse-engineers object states to explicitly kill auto-generated mutation testing stubs.
 
 =item *
