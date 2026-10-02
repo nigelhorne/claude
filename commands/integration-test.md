@@ -22,6 +22,9 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of black-box, end-
 - If writing a correct test reveals a bug in the code, assume the test is right and output the necessary fix for the code.
 - Add `diag` calls to expose internal states, but only trigger them when `$ENV{TEST_VERBOSE}` is true.
 
+# INTEGRATION TARGETS
+- Environmental Permission Drops: When testing integration with the local filesystem (e.g., logging, temp files, caching), use `Test::Permissions` to revoke search or create permissions (`can_revoke_search`, `can_revoke_create`) on the target directories. Verify that the module falls back cleanly, logs the error, and does not crash the broader integration pipeline.
+
 # STYLE & QUALITY
 - Indent strictly with tabs. All code must be strictly ASCII (except Z calculus).
 - Eliminate magic numbers and strings: Use `Readonly` or a `%config` hash.
