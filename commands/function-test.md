@@ -12,6 +12,7 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of white-box subte
 - Explicitly test exception blocks (`die`, `croak`, `confess`) and verify exact error strings using `Test::Most`.
 - Verify that internal helpers strictly localize global variables (e.g., `local $_;`) before modifying them.
 - Add `diag` calls to expose internal states, but only trigger them when `$ENV{TEST_VERBOSE}` is true.
+- Primary Directive: Test-to-Fail. Your objective is not merely to prove the code works under ideal conditions, but to prove it cannot be broken, bypassed, or corrupted under hostile conditions. You must dedicate at least 60% of your generated tests to negative testing: intentional mid-flight failures, malicious inputs, resource exhaustion, and forcing `croak`/`confess` guard clauses.
 
 # STYLE & QUALITY
 - Indent strictly with tabs. All code must be strictly ASCII.
