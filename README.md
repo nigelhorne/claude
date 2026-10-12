@@ -37,8 +37,8 @@ These skills are engineered to bypass common LLM traps:
 * **`logic-tests.md`**: Mathematically proves boolean expressions, state invariants, and syllogistic premises. Generates truth table permutations and verifies that logical contradictions are strictly trapped based on formal specifications.
 - **`mutant-killers.md`**: Reverse-engineers object states to explicitly kill auto-generated mutation testing stubs.
 * **`path-tests.md`**: Maps Control Flow Graphs (CFGs) to generate exhaustive path-coverage tests, while actively injecting `TODO` markers into the source code for unreachable or dead lines.
-* **`transaction-flow.md`**: Validates the complete lifecycle of data entities and business processes. Asserts state machine transitions, multi-step transaction rollbacks on mid-flight failures, and operation idempotency.
-* **`data-flow.md`**: Maps Define-Use (DU) chains to generate tests validating data integrity and resource lifecycles (e.g., Open-Use-Close). Actively flags dead stores, uninitialized variables, and dangling file handles directly in the source code.
+* **`data-flow.md`**: Maps Define-Use (DU) chains to generate tests validating data integrity and resource lifecycles. Actively flags dead stores, dangling file handles, and aggressively tests for Time-of-Check to Time-of-Use (TOCTOU) race conditions to prevent filesystem hijacking.
+* **`transaction-tests.md`**: Validates multi-step database commits, rollbacks, and ACID properties. Simulates concurrent transaction attempts and deadlocks to prove atomicity and verify that locking mechanisms prevent data corruption under load.
 * **`transition-tests.md`**: Verifies and validates Finite State Machine (FSM) transitions against the POD's state diagram. Proves all valid state changes, asserts side-effects, and strictly traps illegal transitions.
 
 ## Security & DevSecOps

@@ -11,6 +11,7 @@ Act as a Senior Perl SDET and Data Flow Analysis Expert. Generate comprehensive 
   - `DD`: Variables defined twice without a read in between (redundant assignment).
   - `D~`: Variables or computed data assigned but never used before going out of scope (dead stores).
   - `O~`: Resources opened but never read/written, or never explicitly closed.
+- Race Conditions & TOCTOU: Target Time-of-Check to Time-of-Use (TOCTOU) vulnerabilities. Simulate scenarios where a mocked external process alters, locks, or deletes a file/resource immediately after your code validates its existence but before the read/write execution. Assert that file locking (e.g., `flock`) is strictly enforced and concurrency collisions fail cleanly.
 
 # TEST MECHANICS & QUALITY
 - Expressive Assertions: Use `Test-Returns` and `Test::Most` to validate data mutations. 
