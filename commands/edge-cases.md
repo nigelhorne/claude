@@ -22,6 +22,9 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of destructive, pa
 - Exceptions: Explicitly test boundary conditions that should trigger `die`, `croak`, or `confess`. Verify the exact error strings using `Test::Most` (e.g., `throws_ok`).
 - If writing a correct test reveals a bug/vulnerability in the code, assume the test is right and output the necessary fix for the code.
 - Add `diag` calls to expose internal states, but only trigger them when `$ENV{TEST_VERBOSE}` is true.
+- Resource Exhaustion (Memory Stress): Test volumetric limits by feeding excessively large payloads (e.g., 100MB strings, deeply nested JSON, or arrays with 1,000,000+ elements). Assert that the system enforces maximum payload sizes and `croak`s gracefully with an explicit size-limit exception rather than triggering a hard Out-Of-Memory (OOM) crash in the Perl interpreter.
+- Algorithmic CPU Starvation (ReDoS): Pass highly repetitive, maliciously crafted strings designed to trigger Regular Expression Denial of Service (ReDoS) via catastrophic backtracking. Use `alarm` or `Time::Out` to wrap these tests and assert that execution completes or aborts cleanly within a strict sub-second timeout.
+- File Descriptor Depletion (Load Testing): Simulate an environment with exhausted OS limits. Attempt to instantiate thousands of concurrent mocked file handles or connections to deliberately hit the OS `ulimit` (e.g., `EMFILE` or `ENFILE` errors). Assert the system traps the exception, does not leak the successfully opened handles, and fails safely.
 
 # STYLE & QUALITY
 - Indent strictly with tabs. All code must be strictly ASCII (except Z calculus).

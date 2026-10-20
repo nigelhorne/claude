@@ -80,7 +80,7 @@ B<C<integration-test.md>>: End-to-end tests across multiple packages. Uses spies
 
 =item *
 
-B<C<edge-cases.md>>: Destructive boundary tests. Actively tries to break the module by passing malformed inputs and simulating upstream failures.
+B<C<edge-cases.md>>: Destructive boundary tests. Actively tries to break the module by passing malformed inputs and simulating upstream failures.  Executes aggressive destructive testing and environmental sabotage. Validates filesystem hostility (via C<Test::Permissions>), hostile encodings (Zalgo/RTL), and rigorously stress-tests for memory exhaustion, Regular Expression Denial of Service (ReDoS), and file descriptor load depletion.
 
 =item *
 

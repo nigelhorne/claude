@@ -32,7 +32,7 @@ These skills are engineered to bypass common LLM traps:
 - **`function-test.md`**: White-box tests for internal functions, mocking internals with `Test::Mockingbird` and checking memory cycles.
 - **`unit-test.md`**: Black-box API tests based strictly on the POD. Asserts global state integrity (`$@`, `$!`, `$_`).
 - **`integration-test.md`**: End-to-end tests across multiple packages. Uses spies over mocks and verifies concurrency and missing optional dependencies (`Test::Without::Module`).
-- **`edge-cases.md`**: Destructive boundary tests. Actively tries to break the module by passing malformed inputs and simulating upstream failures.
+- **`edge-cases.md`**: Destructive boundary tests. Actively tries to break the module by passing malformed inputs and simulating upstream failures.  Executes aggressive destructive testing and environmental sabotage. Validates filesystem hostility (via `Test::Permissions`), hostile encodings (Zalgo/RTL), and rigorously stress-tests for memory exhaustion, Regular Expression Denial of Service (ReDoS), and file descriptor load depletion.
 - **`extended-tests.md`**: Chases 95%+ coverage and high LCSAJ/TER3 scores by deliberately targeting untested conditional branches and identifying dead code.
 * **`logic-tests.md`**: Mathematically proves boolean expressions, state invariants, and syllogistic premises. Generates truth table permutations and verifies that logical contradictions are strictly trapped based on formal specifications.
 - **`mutant-killers.md`**: Reverse-engineers object states to explicitly kill auto-generated mutation testing stubs.
