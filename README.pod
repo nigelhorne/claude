@@ -110,6 +110,10 @@ B<C<transaction-tests.md>>: Validates multi-step database commits, rollbacks, an
 
 B<C<data-flow.md>>: Maps Define-Use (DU) chains to generate tests validating data integrity and resource lifecycles. Actively flags dead stores, dangling file handles, and aggressively tests for Time-of-Check to Time-of-Use (TOCTOU) race conditions to prevent filesystem hijacking.
 
+=item *
+
+B<C<Test::Mockingbird::TimeTravel> Integration>: Embedded in C<transaction-tests.md>, C<transition-tests.md>, and C<edge-cases.md>. Enables instantaneous, deterministic testing of time-based state triggers (TTLs, expiries), cache invalidations, and allows freezing time to accurately simulate mid-flight TOCTOU race conditions without artificially pausing the test suite.
+
 =back
 
 =head2 Security & DevSecOps

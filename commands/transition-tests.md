@@ -7,6 +7,7 @@ Act as a Senior Formal Methods Architect and Perl SDET. Generate state transitio
 - Valid Transitions: Traverse every documented path in the diagram. Assert that executing a valid trigger transitions the system to the exact expected state and executes the correct side-effects.
 - Invalid Transitions (Negative Testing): Attempt to force transitions that do NOT exist in the diagram. Use `Test::Most` (`throws_ok`) to prove the system immediately traps illegal state changes and fails safely without data corruption.
 - Diagram Compliance: Ensure the test suite acts as an active enforcement mechanism. If the code permits a transition not in the diagram, or if a documented transition is missing from the code, output a `# TODO: FSM Discrepancy - [Details]` marker flagging the exact misalignment.
+- Temporal Triggers: For state transitions dependent on elapsed time (e.g., session expiries, timeouts, TTLs), use `Test::Mockingbird::TimeTravel` to instantly warp time forward. Assert that the system correctly transitions to the fallback/expired state without requiring the test suite to actually sleep, ensuring deterministic temporal validation.
 
 # TEST MECHANICS & QUALITY
 - Subtest Structure: Group assertions into subtests named after the specific transition being verified (e.g., `State: Draft -> Trigger: Publish -> State: Active`).

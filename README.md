@@ -40,6 +40,7 @@ These skills are engineered to bypass common LLM traps:
 * **`data-flow.md`**: Maps Define-Use (DU) chains to generate tests validating data integrity and resource lifecycles. Actively flags dead stores, dangling file handles, and aggressively tests for Time-of-Check to Time-of-Use (TOCTOU) race conditions to prevent filesystem hijacking.
 * **`transaction-tests.md`**: Validates multi-step database commits, rollbacks, and ACID properties. Simulates concurrent transaction attempts and deadlocks to prove atomicity and verify that locking mechanisms prevent data corruption under load.
 * **`transition-tests.md`**: Verifies and validates Finite State Machine (FSM) transitions against the POD's state diagram. Proves all valid state changes, asserts side-effects, and strictly traps illegal transitions.
+* **`Test::Mockingbird::TimeTravel` Integration**: Embedded in `transaction-tests.md`, `transition-tests.md`, and `edge-cases.md`. Enables instantaneous, deterministic testing of time-based state triggers (TTLs, expiries), cache invalidations, and allows freezing time to accurately simulate mid-flight TOCTOU race conditions without artificially pausing the test suite.
 
 ## Security & DevSecOps
 

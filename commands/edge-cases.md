@@ -38,6 +38,7 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of destructive, pa
 - Filesystem Hostility: Test unreadable/unwritable files and directories. IMPORTANT: Use `Test::Permissions` (`skip_unless_can_revoke` or `with_revoked`) to wrap these tests. Do not rely on `chmod 000`, as it fails on Windows/tmpfs. Ensure the test skips gracefully if the OS cannot actually revoke permissions, preventing false-positive CI failures. Also test 0-byte files, whitespace-only files, and filenames with shell metacharacters.
 - Upstream Simulation: Use `Test::Mockingbird` to simulate database timeouts, dropped network connections, and third-party APIs returning malformed JSON or 500 errors.
 - I/O Failure Simulation: Use `Test::Mockingbird` to mock I/O built-ins or wrapper modules to force mid-flight hardware/OS failures (e.g., simulating `ENOSPC` "disk full" during writes, or unexpected EOF during reads). Verify graceful exception handling.
+- Temporal Edge Cases & Timeouts: Test how the system handles agonizingly slow resources or delayed responses. Use `Test::Mockingbird::TimeTravel` to simulate time dilation and instantly trigger network/file timeouts, cache invalidations, and stale-data purges. Assert that the system fails fast and recovers gracefully when temporal boundaries are breached.
 
 # TEST MECHANICS & QUALITY
 - Regression Tracking: If reviewing code that patches a bug found in the wild, strictly generate a regression subtest to assert it never recurs.
