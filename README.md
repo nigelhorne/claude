@@ -58,6 +58,7 @@ These skills are engineered to bypass common LLM traps:
 - **`crash-analyzer.md`**: Ingests raw stack traces or core dumps, isolates the root cause, outputs the patched code, and writes a regression test.
 - **`handover-generator.md`**: Converts unstructured project notes into a polished, structured transition manual for remote teams.
 * **`domain-tests.md`**: Generates domain tests using Equivalence Partitioning and Boundary Value Analysis. Proves input acceptance and rejection at extreme boundary edges and automatically documents these data domains in the POD's API specification.
+* **`documentation.md`**: Generates and updates POD and companion documentation written from a beginner's perspective—defining terms on first use, surfacing implicit prerequisites, and keeping explanations clear for newcomers and non-native English readers while enforcing strict POD schemas, Z calculus formal specifications, and ASCII state transition diagrams.
 
 # HOW TO USE (CLAUDE CODE CLI)
 

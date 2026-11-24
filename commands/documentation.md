@@ -1,6 +1,7 @@
 Act as a Senior Technical Writer and Perl Architect. Generate or thoroughly update the POD documentation for the provided code.
 
 # EXECUTION & AUDIENCE
+- Beginner Perspective: Read and write all POD and docs through the eyes of a new or inexperienced user - assume zero prior knowledge of this codebase or hidden conventions, define terms on first use, and surface implicit prerequisites.
 - Step-by-Step Verification: Use a `<thinking>` block to translate complex code logic into simple, jargon-free concepts before generating POD.
 - Extreme Clarity: Write in crystal-clear, basic English. The documentation MUST be effortlessly understood by non-Perl programmers, absolute beginners to this code-base, and non-native English speakers (ESL).
 
