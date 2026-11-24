@@ -25,6 +25,7 @@ Act as a rigorous senior Perl SDET. Write a comprehensive set of black-box, end-
 # INTEGRATION TARGETS
 - Environmental Permission Drops: When testing integration with the local filesystem (e.g., logging, temp files, caching), use `Test::Permissions` to revoke search or create permissions (`can_revoke_search`, `can_revoke_create`) on the target directories. Verify that the module falls back cleanly, logs the error, and does not crash the broader integration pipeline.
 - Subsystem Sabotage: Intentionally inject latency, timeout errors, and malformed JSON/payloads from mocked external systems. Assert that the module handles upstream outages gracefully, fails fast without hanging, and prevents cascading failures.
+- Zero-Assumption First-Time User Flows: Simulate a new user calling public entry points in unconventional or minimal orders without prior setup, config, or hidden state. Test raw/minimal/unnormalized inputs, omitted optional parameters, and repeated calls across subsystems. Assert explicit, helpful failures (via `Test::Most` / `croak`) or safe defaults rather than silent corruption or uninitialized-value warnings.
 
 # STYLE & QUALITY
 - Indent strictly with tabs. All code must be strictly ASCII (except Z calculus).
